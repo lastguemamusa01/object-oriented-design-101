@@ -569,3 +569,141 @@ But I don’t really see how this encapsulation makes my code more flexible. Can
 Once you’ve gotten your software to work like it’s supposed to, flexibility becomes a big deal. What if the customer wants to add new properties or features to the app? If you’ve got tons of duplicate code or confusing inheritance structures in your app, making changes is going to be a pain.
 
 By introducing principles like encapsulation and good class design into your code, it’s easier to make these changes, and your application becomes a lot more flexible.
+
+### Design once, design twice
+
+
+Once you’ve taken a first pass over your software and applied some basic OO principles, you’re ready to take another look, and this time make sure your software is not only flexible, but easily reused and extended.
+
+3. Strive for a maintainable, reusable design.
+
+Once you’ve applied some basic OO principles, you’re ready to apply some patterns and really focus on reuse.
+
+### Let’s make sure Inventory.java is really well-designed
+
+We’ve already used encapsulation to improve the design of Rick’s search tool, but there are still some places in our code where we could get rid of potential problems. This will make our code easier to extend when Rick comes up with that next new feature he wants in his inventory search tool, and easier to reuse if we want to take just a few parts of the app and use them in other contexts.
+
+Take a look at the class diagram for Rick’s application, and think about what you would need to do to add support for
+12-string guitars. What properties and methods would you need to add, and to what classes? And what code would you need to change to allow Rick’s clients to search for 12-strings?
+
+How many classes did you have to modify to make this change? Do you think Rick’s application is well designed right now?
+
+
+We’re adding a property to GuitarSpec, but we have to change code in the Inventory class’s search() method, as well as in the constructor to the Guitar class.
+
+So that’s the problem, right? We shouldn’t have to change code in Guitar and Inventory to add a new property to the GuitarSpec class. Can’t we just use more encapsulation to fix this?
+
+![](2022-01-29-16-38-52.png)
+
+
+That’s right—we need to encapsulate the guitar specifications and isolate them from the rest of Rick’s guitar search tool
+
+![](2022-01-29-16-45-49.png)
+
+
+It’s not enough to know what’s wrong with Rick’s app, or even to figure out that we need some more encapsulation. Now we need to actually figure out how to fix his app so it’s easier to reuse and extend
+
+Adding a new property to GuitarSpec.java results in changes to the code in Guitar.java and Inventory.java. The application should be restructured so that adding properties to GuitarSpec doesn’t affect the code in the rest of the application.
+
+Your task:
+
+* 1. Add a numStrings property and getNumStrings() method to GuitarSpec.java.
+* 2. Modify Guitar.java so that the properties of GuitarSpec are encapsulated away from the constructor of the class.
+* 3. Change the search() method in Inventory.java to delegate comparing the two GuitarSpec objects to the GuitarSpec class, instead of handling the comparison directly.
+* 4. Update FindGuitarTester.java to work with your new classes, and make sure everything still works.
+* 5. Compare your answers with ours on page 44, and then get ready for another test drive to see if we’ve finally got this application finished.
+
+You said I should “delegate” comparisons to GuitarSpec. What’s delegation?
+
+Delegation is when an object needs to perform a certain task, and instead of doing that task directly, it asks another object to handle the task (or sometimes just a part of the task).
+
+So in the design puzzle, you want the search() method in Inventory to ask GuitarSpec to tell it if two specs are equal, instead of comparing the two GuitarSpec objects directly within the search() method itself. search() delegates the comparison to GuitarSpec.
+
+And what does delegation have to do with code being more reusable?
+
+Delegation lets each object worry about equality (or some other task) on its own. This means your objects are more independent of each other, or more loosely coupled. Loosely coupled objects can be taken from one app and easily reused in another, because they’re not tightly tied to other objects’ code.
+
+What’s the point of that?
+
+Delegation makes your code more reusable. It also lets each object worry about its own functionality, rather than spreading the code that handles a single object’s behavior all throughout your application
+
+One of the most common examples of delegation in Java is the equals() method. Instead of a method trying to figure out if two objects are equal, it calls equals() on one of the objects and passes in the second object. Then it just gets back a true or false response from the equals() method.
+
+
+And what does loosely coupled mean again?
+
+Loosely coupled is when the objects in your application each have a specific job to do, and they do only that job. So the functionality of your app is spread out over lots of well-defined objects, which each do a single task really well.
+
+
+And Why is that good ?
+
+Loosely coupled applications are usually more flexible, and easy to change. Since each object is pretty independent of the other objects, you can make a change to one object’s behavior without having to change all the rest of your objects. So adding new features or functionality becomes a lot easier.
+
+delegation.- The act of one object forwarding an operation to another object, to be performed on
+behalf of the first object.
+
+The problem:
+Adding a new property to GuitarSpec.java results in changes to the code in Guitar.java and Inventory.java. The application should be refactored so that adding properties to GuitarSpec doesn’t affect the code in the rest of the application.
+
+![](2022-01-29-17-24-34.png)
+
+
+He just wanted to write great software. So what’s the answer? How do you write great software consistently?
+
+* You just need a set of steps to follow that makes sure your software works and is well designed. It can be as simple as the three steps we used in working on Rick’s app; you just need something that works, and that you can use on all of your software projects
+
+Object-Oriented Analysis & Design helps you write great software, every time
+
+* All this time that we’ve been talking about the three steps you can follow to write great software, we’ve really been talking about OOA&D. OOA&D is really just an approach to writing software that focuses on making sure your code does what it’s supposed to, and that it’s well designed. That means your code is flexible, it’s easy to make changes to it, and it’s maintainable and reusable.
+
+### OOA&D is about writing great software, not doing a bunch of paperwork!
+
+
+Customers are satisfied when their apps WORK.
+
+* We can get requirements from the customer to make sure that we build them what they ask for. Use cases and diagrams are helpful ways to do that, but it’s all about figuring out what the customer wants the app to do.
+
+Customers are satisfied when their apps KEEP WORKING.
+
+* Nobody is happy when an application that worked yesterday is crashing today. If we design our apps well, then they’re going to be robust, and not break every time a customer uses them in unusual ways. Class and sequence diagrams can help show us design problems, but the point is to write well-designed and robust code.
+
+Customers are satisfied when their apps can be UPGRADED.
+
+* There’s nothing worse than a customer asking for a simple new feature, and being told it’s going to take two weeks and $25,000 to make it happen. Using OO techniques like encapsulation, composition, and delegation will make your applications maintainable and extensible.
+
+Programmers are satisfied when their apps can be REUSED.
+
+* Ever built something for one customer, and realized you could use something almost exactly the same for another customer? If you do just a little bit of analysis on your apps, you can make sure they’re easily reused, by avoiding all sorts of nasty dependencies and associations that you don’t really need. Concepts like the Open-Closed Principle (OCP) and the Single Responsibility Principle (SRP) are big time in helping here.
+
+* Programmers are satisfied when their apps are FLEXIBLE.
+
+Sometimes just a little refactoring can take a good app and turn it into a nice framework that can be used for all sorts of different things. This is where you can begin to move from being a head-down coder and start thinking like a real architect (oh yeah, those guys make a lot more money, too). Big-picture thinking is where it’s at.
+
+
+This is ALL OOA&D! It’s not about doing silly diagrams... it’s about writing killer applications that leave your customer happy, and you feeling like you’ve kicked major ass.
+
+
+### Bullet Points
+
+* It takes very little for something to go wrong with an ◆ application that is fragile.
+* You can use OO principles like encapsulation and delegation to build applications that are flexible. 
+*  Encapsulation is breaking your application into logical parts that have a clear boundary that allows an object to hide its data and methods from other objects. 
+* Delegation is giving another object the responsibility of handling a particular task.
+* Always begin a project by figuring out what the customer wants.
+* Once you’ve got the basic functionality of an app in place, work on refining the design so it’s flexible.
+* With a functional and flexible design, you can employ design patterns to improve your design further, and make your app easier to reuse.
+* Find the parts of your application that change often, and try and separate them from the parts of your application that don't change.
+* Building an application that works well but is poorly designed satisfies the customer but will leave you with pain, suffering, and lots of late nights fixing problems.
+* Object oriented analysis and design (OOA&D) provides a way to produce well-designed applications that satisfy both the customer and the programmer.
+
+Funcionality -> Without me, you’ll never actually make the customer happy. No matter how well-designed your application is, I’m the thing that puts a smile on the customer’s face.
+
+Design Paterrn - > I’m all about reuse and making sure you’re not trying to solve a problem that someone else has already figured out.
+
+Encapsulation -> You use me to keep the parts of your code that stay the same separate from the parts that change; then it’s really easy to make changes to your code without breaking everything.
+
+Flexibility -> Use me so that your software can change and grow without constant rework. I keep your application from being fragile.
+
+## 2 gathering requirements 
+
+
