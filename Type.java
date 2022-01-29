@@ -6,7 +6,7 @@ public enum Type {
         switch(this) {
             case ACOUTIC: return "acoustic";
             case ELECTRIC: return "electric";
-            default: return "default"; 
+            default: return "Unspecified"; 
         }
     }
 }

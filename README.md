@@ -267,3 +267,123 @@ That diagram over on page 18 is a class diagram right? Or is it class diagrams, 
 So we’re ready to move on to Step 2, and start applying OO principles, right?
 
 * Not quite... there’s one more thing Rick would like us to help him with before we’re ready to start analyzing our code for places we might be able to improve it. Remember, our first job is to please the customer, and then we really focus on improving our OO design.
+
+
+### Rick’s customers want choices!
+
+Rick’s come up with a new requirement for his app: he wants his search tool to return all the guitars that match his client’s specs, not just the first one in his inventory.
+
+```java
+inventory.addGuitar("V95693", 1499.95, Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+inventory.addGuitar("V9512", 1549.95, Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+```
+
+![](2022-01-28-23-46-40.png)
+
+Inventory.java before
+```java
+public class Inventory {
+    private List guitars;
+
+    public Inventory() {
+        guitars = new LinkedList();
+    }
+
+    public void addGuitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood) {
+        Guitar guitar = new Guitar(serialNumber, price, builder, model, type, backWood, topWood);
+        guitars.add(guitar);
+    } 
+
+    public Guitar getGuitar(String serialNumber) {
+        for(Iterator i = guitars.iterator(); i.hasNext(); ) {
+            Guitar guitar = (Guitar)i.next();
+            if( guitar.getSerialNumber().equals(serialNumber)) {
+                return guitar;
+            }
+        }
+        return null;
+    }
+
+    public Guitar search(Guitar searchGuitar) {
+        for(Iterator i = guitars.iterator(); i.hasNext();) {
+            Guitar guitar = (Guitar)i.next();
+            // Ignore serial number since that’s unique
+            // Ignore price since that’s unique
+
+            Builder builder = searchGuitar.getBuilder();
+            if ((builder != null) && (!builder.equals("")) && (!builder.equals(guitar.getBuilder()))) continue;
+            
+            String model = searchGuitar.getModel().toLowerCase();
+            if ((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel().toLowerCase()))) continue;
+            
+            Type type = searchGuitar.getType();
+            if ((type != null) && (!searchGuitar.equals("")) && (!type.equals(guitar.getType()))) continue;
+            
+            Wood backWood = searchGuitar.getBackWood();
+            if ((backWood != null) && (!backWood.equals("")) && (!backWood.equals(guitar.getBackWood()))) continue;
+            
+            Wood topWood = searchGuitar.getTopWood();
+            if ((topWood != null) && (!topWood.equals("")) && (!topWood.equals(guitar.getTopWood()))) continue;
+        }
+        return null;
+    }
+}
+```
+
+* Inventory.java will be change to return List Search Method.
+
+So I’m not done with the first step until the application works like my customer wants it to?
+
+* Exactly. You want to make sure that the application works like it should before you dive into applying design patterns or trying to do any real restructuring of how the application is put together.
+
+And why is it so important to finish Step 1 before going on to Step 2?
+
+* You’re going to make lots of changes to your software when you’re getting it to work right. Trying to do too much design before you’ve at least got the basic functionality down can end up being a waste, because a lot of the design will change as you’re adding new pieces of functionality to your classes and methods. (Avoid Premature optimization)
+
+
+You seem sort of hung up on this “Step 1” and “Step 2” business. What if I don’t code my apps that way?
+
+* There’s nothing that says you have to follow these steps exactly, but they do provide an easy path to follow to make sure your software does what it’s supposed to, and is well-designed and easy to reuse. If you’ve got something similar that accomplishes the same goals, that’s great!
+
+### Test drive
+
+We’ve talked a lot about getting the right requirements from the customer, but now we need to make sure we’ve actually got those requirements handled by our code. Let’s test things out, and see if our app is working like Rick wants it to:
+
+FindGuitarTester.java before
+```java
+public class FindGuitarTester {
+    public static void main(String[] args) { 
+        // Set up Rick’s guitar inventory 
+        Inventory inventory = new Inventory(); 
+        initializeInventory(inventory);
+        Guitar whatErinLikes = new Guitar("", 0, Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+        Guitar guitar = inventory.search(whatErinLikes); 
+        
+        if (guitar != null) {
+            System.out.println("Erin, you might like this " + guitar.getBuilder() + " " + guitar.getModel() + " " + guitar.getType() + " guitar:\n " + 
+            guitar.getBackWood() + " back and sides,\n " + guitar.getTopWood() + " top.\nYou can have it for only $" + guitar.getPrice() + "!");
+        } else {
+            System.out.println("Sorry, Erin, we have nothing for you.");
+        } 
+    }
+        
+    private static void initializeInventory(Inventory inventory) { 
+        // Add guitars to the inventory...
+        inventory.addGuitar("V95693", 1499.95, Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+        inventory.addGuitar("V9512", 1549.95, Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+    }
+
+}
+```
+
+we are goingo to change the FindGuitarTester.java to work with search method that return list
+
+Now that Rick’s all set with our software, we can begin to use some OO principles and make sure the app is flexible and well-designed.
+
+2. Apply basic OO principles to add flexibility
+
+So this is where we can make sure there’s no duplicate code, and all our objects are well designed, right?
+Here’s where you take software that works, and make sure the way it’s put together actually makes sense.
+
+### Looking for problems
+

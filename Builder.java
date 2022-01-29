@@ -9,7 +9,7 @@ public enum Builder {
             case GIBSON: return "gibson";
             case COLLINGS: return "collings";
             case PRS: return "martin";
-            default: return "default"; 
+            default: return "Unspecified"; 
         }
     }
 
