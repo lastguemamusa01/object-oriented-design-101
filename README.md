@@ -6,4 +6,7 @@ Does the application actually do what it’s supposed to? And what about things 
 
 Here’s the application that the programming firm built for Rick... they’ve put together a system to completely replace all of Rick’s handwritten notes, and help him match his customers with the perfect guitar. Here’s the UML class diagram they gave Rick to show him what they did:
 
+![image](https://user-images.githubusercontent.com/25869911/151646326-7e32854d-0ddf-4aec-bbc3-d9ed57d5d9c0.png)
 
+Invetory.java
+Guitar.java
