@@ -8,5 +8,15 @@ Here’s the application that the programming firm built for Rick... they’ve p
 
 ![image](https://user-images.githubusercontent.com/25869911/151646326-7e32854d-0ddf-4aec-bbc3-d9ed57d5d9c0.png)
 
-Invetory.java
-Guitar.java
+* Invetory.java
+* Guitar.java
+
+### But then Rick started losing customers...
+
+It seems like no matter who the customer is and what they like, Rick’s new search program almost always comes up empty when it looks for good guitar matches. But Rick knows he has guitars that these customers would like... so what’s going on?
+
+FindGuitarTester.java
+
+It’s obvious that Rick’s app has problems, but it’s not so obvious what we should work on first. And it looks like there’s no shortage of opinion:
+
+![](2022-01-28-22-29-24.png)
