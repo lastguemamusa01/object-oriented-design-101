@@ -387,3 +387,185 @@ Here’s where you take software that works, and make sure the way it’s put to
 
 ### Looking for problems
 
+Let’s dig a little deeper into our search tool, and see if we can find any problems that some simple OO principles might help improve. Let’s start by taking a closer look at how the search() method in Inventory works:
+
+![](2022-01-29-15-09-56.png)
+
+### Analyze the search() method
+
+Let’s spend a little time analyzing exactly what goes on in the search() method of Inventory.java. Before we look at the code, though, let’s think about what this method should do.
+
+The client provides their guitar preferences.
+
+* Each of Rick’s clients has some properties that they’re interested in finding in their ideal guitar: the woods used, or the type of guitar, or a particular builder or model. They provide these preferences to Rick, who feeds them into his inventory search tool.
+
+The search tool looks through Rick’s inventory.
+
+* Once the search tool knows what Rick’s client wants, it starts to loop through each guitar in Rick’s inventory.
+
+Each guitar is compared to the client’s preferences.
+
+* For each guitar in Rick’s inventory, the search tool sees if that guitar matches the client’s preferences. If there’s a match, the matching guitar is added to the list of choices for the client.
+
+Rick’s client is given a list of matching guitars.
+
+* Finally, the list of matching guitars is returned to Rick and his client. The client can make a choice, and Rick can make a sale.
+
+
+The client can specify only general properties of an instrument. So they never supply a serial number or a price.
+
+Use a textual description of the problem you’re trying to solve to make sure that your design lines up with the intended functionality of your application
+
+### The Mystery of the Mismatched Object Type
+
+objects are very particular about their jobs. Each object is interested in doing its job, and only its job, to the best of its ability. There’s nothing a well-designed object hates more than being used to do something that really isn’t its true purpose.
+
+Unfortunately, it’s come to our attention that this is exactly what is happening in Rick’s inventory search tool: somewhere, an object is being used to do something that it really shouldn’t be doing. It’s your job to solve this mystery and figure out how we can get Rick’s application back in line.
+
+1. Objects should do what their names indicate.
+
+* If an object is named Jet, it should probably takeOff() and land(), but it shouldn’t takeTicket()—that’s the job of another object, and doesn’t belong in Jet.
+
+2. Each object should represent a single concept.
+
+* You don’t want objects serving double or triple duty. Avoid a Duck object that represents a real quacking duck, a yellow plastic duck, and someone dropping their head down to avoid getting hit by a baseball.
+
+3. Unused properties are a dead giveaway.
+
+* If you’ve got an object that is being used with no-value or null properties often, you’ve probably got an object doing more than one job. If you rarely have values for a certain property, why is that property part of the object? Would there be a better object to use with just a subset of those properties?
+
+You know, Rick’s clients really aren’t providing a Guitar object... I mean, they don’t actually give him a guitar to compare against his inventory
+
+Frank: Hey, that’s right, Joe. I hadn’t thought about that before. 
+
+Jill: So what? Using a Guitar object makes it really easy to do comparisons in the search() method.
+
+Joe: Not any more than some other object would. Look:
+
+```java
+if (searchGuitar.getBuilder() != guitar.getBuilder()) { continue; }
+```
+
+Joe: It really doesn’t matter what type of object we’re using there, as long as we can figure out what specific things Rick’s clients are looking for.
+
+Frank: Yeah, I think we should have a new object that stores just the specs that clients want to send to the search() method. Then they’re not sending an entire Guitar object, which never seemed to make much sense to me.
+
+Jill: But isn’t that going to create some duplicate code? If there’s an object for all the client’s specs, and then the Guitar has all its properties, we’ve got two getBuilder() methods, two getBackWood() methods... that’s not good.
+
+Frank: So why don’t we just encapsulate those properties away from Guitar into a new object?
+
+Joe: Whoa... I was with you until you said “encapsulate.” I thought that was when you made all your variables private, so nobody could use them incorrectly. What’s that got to do with a guitar’s properties?
+
+Frank: Encapsulation is also about breaking your app into logical parts, and then keeping those parts separate. So just like you keep the data in your classes separate from the rest of your app’s behavior, we can keep the generic properties of a guitar separate from the actual Guitar object itself.
+
+Jill: And then Guitar just has a variable pointing to a new object type that stores all its properties?
+
+Frank: Exactly! So we’ve really encapsulated the guitar properties out of Guitar, and put them in their own separate object. Look, we could do something like this...
+
+Encapsulation allows you to hide the inner workings of your application’s parts, but yet make it clear what each part does.
+
+Create the GuitarSpec object.
+
+![](2022-01-29-15-26-12.png)
+
+### Now update your own code
+
+With this class diagram, you should be able to add the GuitarSpec class to your application, and update the Guitar class as well. Go ahead and make any changes you need to Inventory.java so that the search tool compiles, as well.
+
+I understand why we need an object for the client to send specs to search()... but why are we using that object to hold properties for Guitar, too?
+
+Suppose you just used GuitarSpec to hold client specs for sending to the search() method, and you kept the Guitar class just the same as it was. If Rick started carrying 12-string guitars, and wanted a numStrings property, you’d have to add that property—and code for a getNumStrings() method—to both the GuitarSpec and Guitar classes. Can you see how this would lead to duplicate code?
+
+Instead, we can put all that (potentially) duplicate code into the GuitarSpec class, and then have Guitar objects reference an instance of it to avoid any duplication.
+
+Anytime you see duplicate code, look for a place to encapsulate!
+
+I still am confused about how this is a form of encapsulation. Can you explain that again?
+
+The idea behind encapsulation is to protect information in one part of your application from the other parts of your application. In its simplest form, you can protect the data
+in your class from the rest of your app by making that data private. But sometimes the information might be an entire
+set of properties—like the details about a guitar—or even behavior—like how a particular type of duck flies.
+
+When you break that behavior out from a class, you can change the behavior without the class having to change as well. So if you changed how properties were stored, you wouldn’t have to change your Guitar class at all, because the properties are encapsulated away from Guitar.
+That’s the power of encapsulation: by breaking up the different parts of your app, you can change one part without having to change all the other parts. In general, you should encapsulate the parts of your app that might vary away from the parts that will stay the same.
+
+guitar.java file before change
+```java
+public class Guitar {
+
+    private String serialNumber, model;
+    private double price;
+    private Builder builder;
+    private Type type;
+    private Wood backWood, topWood;
+
+
+    public Guitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood) {
+        this.serialNumber = serialNumber;
+        this.price = price;
+        this.builder = builder;
+        this.model = model;
+        this.type = type;
+        this.backWood = backWood;
+        this.topWood = topWood;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public double getPrice() { 
+        return price;
+    }
+
+    public void setPrice(double newPrice) {
+        this.price = newPrice;
+    }
+
+    public Builder getBuilder() { 
+        return builder;
+    }
+
+    public String getModel() {
+        return model; 
+    }
+
+    public Type getType() { 
+        return type;
+    }
+
+    public Wood getBackWood() {
+        return backWood; 
+    }
+
+    public Wood getTopWood() { 
+        return topWood;
+    }
+}
+```
+
+guitar.java modified and encapsulated to GuitarSpec.java(created).
+
+### update the inventory class
+
+Now that we’ve encapsulated away the specifications of a guitar, we’ll need to make a few other changes to our code.
+
+![](2022-01-29-15-37-57.png)
+
+
+### Getting ready for another test drive
+
+You’ll need to update the FindGuitarTester class to test out all these new changes:
+
+
+
+Encapsulation isn’t the only OO principle I can use at this stage, is it?
+
+Other good OO principles that you might want to think about at this stage are inheritance and polymorphism
+
+
+But I don’t really see how this encapsulation makes my code more flexible. Can you explain that again?
+
+Once you’ve gotten your software to work like it’s supposed to, flexibility becomes a big deal. What if the customer wants to add new properties or features to the app? If you’ve got tons of duplicate code or confusing inheritance structures in your app, making changes is going to be a pain.
+
+By introducing principles like encapsulation and good class design into your code, it’s easier to make these changes, and your application becomes a lot more flexible.
