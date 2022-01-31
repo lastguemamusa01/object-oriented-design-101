@@ -1,3 +1,5 @@
+package chapter1;
+
 public enum Type {
 
     ACOUTIC, ELECTRIC;

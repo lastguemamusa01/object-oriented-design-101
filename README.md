@@ -706,4 +706,45 @@ Flexibility -> Use me so that your software can change and grow without constant
 
 ## 2 gathering requirements 
 
+Give them what they want
 
+Everybody loves a satisfied customer. You already know that the first step in writing great software is making sure it does what the customer wants it to. But how do you figure out what a customer really wants? And how do you make sure that the customer even knows what they really want? That’s where good requirements come in, and in this chapter, you’re going to learn how to satisfy your customer by making sure what you deliver is actually what they asked for.
+
+### You’ve got a new programming gig
+
+![](2022-01-31-13-49-12.png)
+
+
+### But when Gina tried it...
+
+![](2022-01-31-14-07-01.png)
+
+### So what exactly is a requirement, anyway?
+
+![](2022-01-31-14-11-42.png)
+
+### Creating a requirements list
+
+![](2022-01-31-14-19-41.png)
+
+### what does the dog door really need to do ?
+
+![](2022-01-31-14-25-24.png)
+
+### plan for things going wrong
+
+![](2022-01-31-14-28-20.png)
+
+### Alternate paths handle system problems
+
+A use case is what people call the steps that a system takes to make something happen.
+
+![](2022-01-31-14-32-11.png)
+
+### (Re) introducing use cases
+
+A use case describes what your system does to accomplish a particular customer goal.
+
+![](2022-01-31-14-37-26.png)
+
+### One use case, three parts

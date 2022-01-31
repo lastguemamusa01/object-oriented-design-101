@@ -1,3 +1,5 @@
+package chapter1;
+
 public class GuitarSpec {
     
     private String model;

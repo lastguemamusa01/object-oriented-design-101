@@ -1,3 +1,5 @@
+package chapter1;
+
 public enum Wood {
     
     INDIAN_ROSEWOOD, BRAZILIAN_ROSEWOOD, MAHOGANY, MAPLE, CEDAR, ALDER;
