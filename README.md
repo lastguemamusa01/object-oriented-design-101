@@ -813,3 +813,12 @@ Good use cases, requirements, main paths, alternate paths, and a working simulat
 - make requierement from use cases
 
 ![](2022-02-02-13-47-32.png)
+
+![](2022-02-02-15-57-06.png)
+
+### Tools for your OOA&D Toolbox
+
+![](2022-02-02-16-00-34.png)
+
+## 3 - requirements change
+
