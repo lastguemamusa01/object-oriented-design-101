@@ -748,3 +748,68 @@ A use case describes what your system does to accomplish a particular customer g
 ![](2022-01-31-14-37-26.png)
 
 ### One use case, three parts
+
+![](2022-02-02-12-48-00.png)
+
+![](2022-02-02-12-51-23.png)
+
+### Checking your requirements against your use cases
+
+So far, you’ve got an initial set of requirements and a good solid use case. But now you need to go back to your requirements and make sure that they’ll cover everything your system has to do.
+And that’s where the use case comes in:
+
+![](2022-02-02-13-05-25.png)
+
+### So now can we write some code?
+
+With use case and requirements in hand, you’re ready to write code that you know will make Todd and Gina satisfied customers. Let’s check out our requirements and see exactly what we’re going to have to write code for:
+
+
+### Automatically closing the door
+
+The only requirement left to code is taking care of automatically closing the door after it’s been opened. 
+
+Change on Remote.java class (add timer to close the door)
+
+ Why did you make the timer variable final?
+
+ Because we need to call its cancel() method in the TimerTask anonymous class. If you need to access variables in your anonymous class from the enclosing class (that’s Remote in this case), those variables must be final. And, really, just because it makes things work.
+
+ Why are you calling cancel()? Won’t the timer quit automatically after running the TimerTask?
+
+ t will, but it turns out that most JVMs take forever before they garbage collect the Timer. That ends up hanging the program, and your code will run for hours before it actually quits gracefully. That’s no good, but calling cancel() manually takes care of the problem.
+
+
+### We need a new simulator!
+
+Our old simulator isn’t that useful anymore... it assumes Todd and Gina are closing the door manually, and not letting the timer do its work. Let’s update our simulator to make it work with the updated Remote class:t
+
+DogDoorSimultor -> change to only press once
+
+### Test drive, version 2.0
+
+we need to test alternate paths as well as the main path.
+
+plan and test for when things go wrong.
+
+### Reviewing the alternate path
+
+![](2022-02-02-13-20-23.png)
+
+change the DogDoorSimultor.java -> add try catch for this alternative path
+
+### Delivering the new dog door
+
+Good use cases, requirements, main paths, alternate paths, and a working simulator; we’re definitely on the road to great software. Let’s take the new dog door to Todd and Gina.
+
+![](2022-02-02-13-39-46.png)
+
+- make use cases
+
+![](2022-02-02-13-46-58.png)
+
+- check that use cases have clear value, start and stop, external initiator
+
+- make requierement from use cases
+
+![](2022-02-02-13-47-32.png)
