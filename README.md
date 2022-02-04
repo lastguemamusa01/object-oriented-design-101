@@ -822,3 +822,155 @@ Good use cases, requirements, main paths, alternate paths, and a working simulat
 
 ## 3 - requirements change
 
+So you’ve talked to your customer, gathered requirements, written out your use cases, and delivered a killer application. It’s time for a nice relaxing cocktail, right? Right... until your customer decides that they really wanted something different than what they told you. They love what you’ve done, really, but it’s not quite good enough anymore. In the real world, requirements are always changing, and it’s up to you to roll with these changes and keep your customer satisfied.
+
+![](2022-02-03-17-05-14.png)
+
+Requirements always change. If you’ve got good use cases, though, you can usually change your software quickly to adjust to those new requirements.
+
+![](2022-02-03-17-12-21.png)
+
+![](2022-02-03-17-13-35.png)
+
+![](2022-02-03-17-15-05.png)
+
+
+A complete path through a use case, from the first step to the last, is called a scenario.
+Most use cases have several different scenarios, but they always share the same user goal.
+
+![](2022-02-03-17-18-44.png)
+
+all scenarios is all permutation of the steps.
+
+I think we should recheck our requirements list against the new use case. If Todd and Gina’s requirements changed, then our requirements list might change too, right?
+
+Any time you change your use case, you need to go back and check your requirements.
+
+Now we can start coding the dog door again
+
+With new requirements comes new code. We need some barking, a bark recognizer to listen for barking, and then a dog door to open up:
+
+![](2022-02-03-17-23-12.png)
+
+
+BarkRecognizer.java -> recognize() method
+
+![](2022-02-03-17-29-28.png)
+
+### Power up the new dog door
+
+Use cases, requirements, and code have all led up to this. Let’s see if everything works like it should.
+
+update the DogDoorSimulator.java -> add new barkrecognizer class and use the recognize method.
+
+![](2022-02-03-17-41-02.png)
+
+![](2022-02-03-17-41-11.png)
+
+
+Add the timer to DogDoor.java and remove on remot.javae the timer
+
+Sometimes a change in requirements reveals problems with your system that you didn’t even know were there.
+
+Change is constant, and your system should always improve every time you work on it.
+
+Encapsulation helped us realize that the dog door should handle closing itself. We separated the door’s behavior from the rest of the code in our app.
+
+![](2022-02-03-17-59-39.png)
+
+## 4 Analysis
+
+Taking Your Software into the Real World
+
+Your application has to do more than work on your own personal development machine, finely tuned and perfectly set up; your apps have to work when real people use them. This chapter is all about making sure that your software works in a real-world context. You’ll learn how textual analysis can take that use case you’ve been working on and turn it into classes and methods that you know are what your customers want.
+
+
+
+
+Analysis helps you ensure your system works in a real-world context.
+       
+![](2022-02-03-18-10-03.png)
+
+
+dentify the problem
+
+The first step in good analysis is figuring out potential problems. We already know that there’s a problem when there are multiple dogs in the same neighborhood:
+
+Plan a solution
+
+It looks like there’s a change we need to make in what our system does. Do you know what it is? Below is a part of the diagram detailing how the dog door system works:
+
+![](2022-02-03-18-12-39.png)
+
+Analysis and your use cases let you show customers, managers, and other developers how your system works in a real world context.
+
+![](2022-02-03-18-16-13.png)
+
+### Update your use case
+
+Since we’ve changed our dog door diagram, we need to go back to the dog door use case, and update it with the new steps we’ve figured out. Then, over the next few pages, we’ll figure out what changes we need to make to our code.
+
+![](2022-02-03-18-20-13.png)
+
+we need to add user case for storing a dog bark
+
+![](2022-02-03-18-23-45.png)
+
+![](2022-02-03-18-27-11.png)
+
+![](2022-02-03-18-27-20.png)
+
+![](2022-02-03-18-30-32.png)
+
+
+![](2022-02-03-18-47-40.png)
+
+The power of loosely coupled applications
+
+In Chapter 1, we said that delegation helps our applications stay loosely coupled. That means that your objects are independent of each other; in other words, changes to one object don’t require you to make a bunch of changes to other objects.
+
+Delegation shields your objects from implementation changes to other objects in your software.
+
+![](2022-02-03-18-49-26.png)
+
+
+![](2022-02-03-18-52-57.png)
+
+![](2022-02-03-18-57-14.png)
+
+![](2022-02-03-18-57-22.png)
+
+![](2022-02-03-19-03-52.png)
+
+![](2022-02-03-19-06-41.png)
+
+![](2022-02-03-19-11-03.png)
+
+![](2022-02-03-19-14-46.png)
+
+![](2022-02-03-19-14-57.png)
+
+![](2022-02-03-22-50-07.png)
+
+![](2022-02-03-22-53-26.png)
+
+![](2022-02-03-22-57-09.png)
+
+Class diagrams aren’t everything
+
+Class diagrams are a great way to get an overview of your system, and show the parts of your system to co-workers and other programmers. But there’s still plenty of things that they don’t show.
+
+![](2022-02-03-23-03-22.png)
+
+### So how does recognize() work now?
+
+Maria’s figured out that her BarkRecognizer class should be able to compare any bark it receives against multiple allowed barks, but her class diagram doesn’t tell us much about how to actually write the recognize() method.
+
+![](2022-02-03-23-04-35.png)
+
+![](2022-02-03-23-08-09.png)
+
+![](2022-02-03-23-12-34.png)
+
+
+## 5 (part 1) good design = flexible software
