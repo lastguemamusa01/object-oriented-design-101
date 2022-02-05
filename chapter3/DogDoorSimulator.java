@@ -10,7 +10,7 @@ public class DogDoorSimulator {
         door.addAllowedBark(new Bark("rawlf"));
         door.addAllowedBark(new Bark("woof"));
         BarkRecognizer recognizer = new BarkRecognizer(door);
-        Remote remote = new Remote(door);
+        // Remote remote = new Remote(door);
 
         System.out.println("Bruce starts barking.");
         recognizer.recognize(new Bark("rowlf"));
@@ -18,7 +18,8 @@ public class DogDoorSimulator {
         System.out.println("\nBruce has gone outside...");
       
         try {
-            Thread.currentThread().sleep(10000);
+            Thread.currentThread();
+            Thread.sleep(10000);
         } catch(InterruptedException e) {}
       
         System.out.println("\nBruce's all done...");
@@ -29,7 +30,8 @@ public class DogDoorSimulator {
         recognizer.recognize(smallDogBark);
 
         try {
-            Thread.currentThread().sleep(10000);
+            Thread.currentThread();
+            Thread.sleep(10000);
         } catch(InterruptedException e) {}
         
         System.out.println("\nBruce starts barking.");

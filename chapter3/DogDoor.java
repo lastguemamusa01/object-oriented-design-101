@@ -8,11 +8,11 @@ import java.util.TimerTask;
 public class DogDoor {
     
     private boolean open;
-    private List allowedBarks;
+    private List<Bark> allowedBarks;
 
     public DogDoor() {
         this.open = false;
-        this.allowedBarks = new LinkedList();
+        this.allowedBarks = new LinkedList<Bark>();
     }
 
     public void open() {
@@ -41,7 +41,7 @@ public class DogDoor {
         allowedBarks.add(bark);
     }
 
-    public List getAllowedBarks() {
+    public List<Bark> getAllowedBarks() {
         return allowedBarks;
     }
 

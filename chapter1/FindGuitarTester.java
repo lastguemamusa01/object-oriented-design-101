@@ -10,12 +10,12 @@ public class FindGuitarTester {
         initializeInventory(inventory);
         GuitarSpec whatErinLikes = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER,6);
         
-        List matchingGuitars = inventory.search(whatErinLikes);
+        List<Guitar> matchingGuitars = inventory.search(whatErinLikes);
 
         if (!matchingGuitars.isEmpty()) {
             System.out.println("Erin, you might like these guitars:"); 
        
-            for (Iterator i = matchingGuitars.iterator(); i.hasNext(); ) {
+            for (Iterator<Guitar> i = matchingGuitars.iterator(); i.hasNext(); ) {
                 Guitar guitar = (Guitar)i.next();
                 GuitarSpec spec = guitar.getSpec();
                 System.out.println(" We have a " + spec.getBuilder() + " " + spec.getModel() + " " + spec.getType() + " guitar:\n " +

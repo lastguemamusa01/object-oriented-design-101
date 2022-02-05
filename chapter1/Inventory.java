@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Inventory {
-    private List guitars;
+    private List<Guitar> guitars;
 
     public Inventory() {
-        guitars = new LinkedList();
+        guitars = new LinkedList<Guitar>();
     }
 
     public void addGuitar(String serialNumber, double price, GuitarSpec spec) {
@@ -17,7 +17,7 @@ public class Inventory {
     } 
 
     public Guitar getGuitar(String serialNumber) {
-        for(Iterator i = guitars.iterator(); i.hasNext(); ) {
+        for(Iterator<Guitar> i = guitars.iterator(); i.hasNext(); ) {
             Guitar guitar = (Guitar)i.next();
             if( guitar.getSerialNumber().equals(serialNumber)) {
                 return guitar;
@@ -26,11 +26,11 @@ public class Inventory {
         return null;
     }
 
-    public List search(GuitarSpec searchSpec) {
+    public List<Guitar> search(GuitarSpec searchSpec) {
 
-        List matchingGuitars = new LinkedList();
+        List<Guitar> matchingGuitars = new LinkedList<Guitar>();
 
-        for(Iterator i = guitars.iterator(); i.hasNext();) {
+        for(Iterator<Guitar> i = guitars.iterator(); i.hasNext();) {
 
             Guitar guitar = (Guitar)i.next();            
             if(guitar.getSpec().matches(searchSpec)) matchingGuitars.add(guitar);

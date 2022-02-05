@@ -973,4 +973,247 @@ Maria’s figured out that her BarkRecognizer class should be able to compare an
 ![](2022-02-03-23-12-34.png)
 
 
-## 5 (part 1) good design = flexible software
+## 5 (part 1) good design = flexible software - Nothing Ever Stays the Same
+
+Change is inevitable. No matter how much you like your software right now, it’s probably going to change tomorrow. And the harder you make it for your software to change, the more difficult
+it’s going to be to respond to your customer’s changing needs. In this chapter, we’re going to revisit an old friend, try and improve an existing software project, and see how small changes can turn into big problems
+
+## Rick’s Guitar is expanding (Stringed Instruments)
+
+We’ve talked a lot about good analysis and design being the key to software that you can reuse and extend.
+
+![](2022-02-04-21-31-37.png)
+
+![](2022-02-04-21-36-05.png)
+
+Abstract classes are placeholders for actual implementation classes.
+
+The abstract class defines behavior, and the subclasses implement that behavior.
+
+![](2022-02-04-21-40-29.png)
+
+![](2022-02-04-21-43-00.png)
+
+### UML cheat Sheet
+
+
+### Let’s code Rick’s new search tool
+
+We can start off by creating a new class, Instrument, and making it abstract. Then we put all the properties common to an instrument in this class
+
+![](2022-02-04-21-48-45.png)
+
+
+create Instrument abstract class
+create guitar and mandolin class that is extends Instrument
+
+With the instruments taken care of, we can move on to the spec classes. We need to create another abstract class, InstrumentSpec, since so many instruments have common specifications:
+
+Let’s code GuitarSpec...
+
+After seeing GuitarSpec, MandolinSpec is pretty simple.
+
+All that’s left is to update the Inventory class to work with multiple instrument types, instead of just the Guitar class:
+
+![](2022-02-04-22-40-08.png)
+
+You’ve made some MAJOR improvements to Rick’s app You’ve done a lot more than just
+
+add support for mandolins to Rick’s application. By abstracting common properties and behavior into the Instrument and InstrumentSpec classes, you’ve made the classes in
+Rick’s app more independent. That’s a significant improvement in his design.
+
+Great software isn’t built in a day
+
+Along with some major design improvements, we’ve uncovered a few problems with the search tool. That’s OK... you’re almost always going to find  a few new problems when you make big changes to your design.
+
+So now our job is to take Rick’s better- designed application, and see if we can improve it even further... to take it from good software to GREAT software.
+
+
+1. Does the new search tool do what it’s supposed to do?
+
+Absolutely. It finds guitars and mandolins, although not at the same time. So maybe it just mostly does what it’s supposed to do. Better ask Rick to be sure...
+
+2. Have you used solid OO principles, like encapsulation, to avoid duplicate code and make your software easy to extend?
+
+We used encapsulation when we came up with the InstrumentSpec classes, and inheritance when we developed an Instrument and InstrumentSpec abstract superclass. But it still takes a lot of work to add new instrument types..
+
+3. How easy is it to reuse Rick’s application? Do changes to one part of the app force you to make lots of changes in other parts of the app? Is his software loosely coupled?
+
+It’s sort of hard to use just parts of Rick’s application. Everything’s pretty tightly connected, and InstrumentSpec is actually part of Instrument (remember when we talked about aggregation?).
+
+One of the best ways to see if software is well-designed is to try and CHANGE it.
+
+If your software is hard to change, there’s probably something you can improve about the design. Let’s see how hard it is to add a couple of new instruments to Rick’s app:
+
+![](2022-02-04-22-48-23.png)
+
+
+for each new instrument type you need to add that class(Banjo), spec class(BnajoSpec) and modify inventory.class(update)
+
+![](2022-02-04-22-52-52.png)
+
+
+### So what are we supposed to do now?
+
+It looks like we’ve definitely still got some work to do to turn Rick’s application into great software that’s truly easy to change and extend. But that doesn’t mean the work you’ve done isn’t important... lots of times, you’ve got to improve your designto find some problems that weren’t so apparent earlier on. Now that we’ve applied some of our OO principles to Rick’s search tool, we’ve been able to locate some issues that we’re going to have to resolve if we don’t want to spend the next few years writing new Banjo and Fiddle classes (and who really wants to do that?).
+
+
+INTERFACE - This code construct has the dual role of defining behavior that applies to multiple types, and also being the preferred focus of classes that use those types.
+
+![](2022-02-04-23-02-26.png)
+
+ENCAPSULATION - It’s been responsible for preventing more maintenance problems than any other OO principle in history, by localizing the changes required for the behavior of an object to vary.
+
+![](2022-02-04-23-05-55.png)
+
+
+Change - Every class should attempt to make sure that it has only one reason to do this, the death of many a badly designed piece of software.
+
+![](2022-02-04-23-12-39.png)
+
+![](2022-02-04-23-18-48.png)
+
+
+### OO Principles
+
+* Encapsulate what varies.
+* Code to an interface rather than to an implementation.
+* Each class in your application should have only one reason to change.
+
+## 5 (part2) good desing = flexible software (Give Your Software a 30-minute Workout)
+
+Ever wished you were just a bit more flexible?
+
+
+When you run into problems making changes to your application, it probably means that your software needs to be more flexible and resilient. To help stretch your application out, you’re going to do some analysis, a whole lot of design, and learn how OO principles can really loosen up your application. And for the grand finale, you’ll see how higher cohesion can really help your coupling. Sound interesting? Turn the page, and let’s get back to fixing that inflexible application.
+
+![](2022-02-04-23-25-20.png)
+
+![](2022-02-04-23-37-13.png)
+
+Let’s take what we’ve figured out about turning InstrumentSpec into a concrete class, and see if it makes the design of Inventory any better.
+
+changing the InstrumentSpec from abstract class to normal class, in the inventory.class now we can use only one search method that we can use as parameter InstrumentSpec because it can be created or instanciated(because it is not abstract class)
+
+The search() method isn’t the only thing that makes adding new instruments to Rick’s application difficult. You also have to add a new subclass of Instrument for each new instrument type. But why? Let’s do a little more analysis.
+
+Why is there a need for an Instrument class in Rick’s application?
+
+Most instruments have at least a few common properties, like serial number and price. Instrument stores the common properties, and then each specific instrument type can extend from Instrument.
+
+What things are common to all instruments?
+
+The serial number, the price, and some set of specifications (even though the details of those specs may be different for different instrument types).
+
+What things are different between instruments?
+
+The specifications: each type of instrument has a different set of properties that it can contain. And since each instrument has a different InstrumentSpec, each has a different constructor.
+
+### A closer look at the instrument classes
+
+![](2022-02-04-23-43-03.png)
+
+![](2022-02-04-23-48-51.png)
+
+![](2022-02-04-23-58-02.png)
+
+Design is iterative... and you have to be willing to change your own designs, as well as those that you inherit from other programmers.
+
+delete Guitar.java and Mnadolin.java classes, and don't create new classes of Instrument
+
+Guitar.java
+
+```java
+package chapter5;
+
+public class Guitar extends Instrument {
+    
+    public Guitar(String serialNumber, double price, GuitarSpec spec) {
+        super(serialNumber, price, spec);
+    }
+}
+```
+
+instead of Instrument class, create enum of InstrumentType.java 
+where the GUITAR, BANJO,MANDOLIN can be enums. we are eliminating classes because there is no different behavior in this system like type of playing etc. only have different attributes each instrument.
+
+![](2022-02-05-00-13-21.png)
+
+![](2022-02-05-00-13-32.png)
+
+
+### Getting dynamic with instrument properties
+
+
+using properties Map ds , now properties can have (instrumentTYpe, builder, model, tpe backwood, topwood, numstrings, style, ...) 
+we can eliminate GuitarSpec or MnadolinSpec.java
+
+```java
+package chapter5;
+
+public class GuitarSpec extends InstrumentSpec {
+    
+    private int numStrings;
+
+    public GuitarSpec(Builder builder, String model, Type type, Wood backWood, Wood topWood, int numStrings) {
+        super(builder, model, type, backWood, topWood);
+        this.numStrings = numStrings;
+    }
+
+    public int getNumStrings() {
+        return numStrings;
+    }
+
+    // Override the superclass matches()
+    public boolean matches(InstrumentSpec otherSpec) {
+       
+        if(!super.matches(otherSpec)) return false;
+
+        if(!(otherSpec instanceof GuitarSpec)) return false;
+
+        GuitarSpec spec = (GuitarSpec)otherSpec;
+
+        if (numStrings != spec.numStrings) return false;
+    
+        return true;
+
+    }
+
+}
+```
+
+![](2022-02-05-00-26-19.png)
+
+### Using the new Instrument and InstrumentSpec classes
+
+![](2022-02-05-00-27-01.png)
+
+![](2022-02-05-00-40-55.png)
+
+
+create enum of InstrumentType.java 
+
+change the Inventory.java -> addInstrument method is more simple now
+
+### Behold: Rick’s flexible application
+
+
+![](2022-02-05-00-49-05.png)
+
+
+create FindInstrument.java to test the search
+
+![](2022-02-05-01-13-37.png)
+
+![](2022-02-05-02-19-45.png)
+
+![](2022-02-05-02-19-57.png)
+
+![](2022-02-05-02-20-10.png)
+
+![](2022-02-05-02-20-24.png)
+
+![](2022-02-05-02-20-33.png)
+
+## 6 Solving really big problems
+
