@@ -1217,3 +1217,115 @@ create FindInstrument.java to test the search
 
 ## 6 Solving really big problems
 
+It’s time to build something REALLY BIG. Are you ready?
+
+You’ve got a ton of tools in your OOA&D toolbox, but how do you use those tools when you have to build something really big? Well, you may not realize it, but you’ve got everything you need to handle big problems. We’ll learn about some new tools, like domain analysis and use case diagrams, but even these new tools are based on things you already know about—like listening to the customer and understanding what you’re going to build before you start writing code. Get ready... it’s time to start playing the architect.
+
+![](2022-02-05-13-15-23.png)
+
+### The things you already know...
+
+By encapsulating what varies, you make your application more flexible, and easier to change.
+
+Coding to an interface, rather than to an implementation, makes your software easier to extend.
+
+The best way to get good requirements is to understand what a system is supposed to do
+
+Great software is easy to change and extend, and does what the customer wants it to do.
+
+Analysis helps you ensure your system works in a real-world context.
+
+![](2022-02-05-13-19-24.png)
+
+![](2022-02-05-13-23-20.png)
+
+### Customer Conversation
+
+![](2022-02-05-13-31-53.png)
+
+### Figure out the features
+
+You’ve learned a lot about what Gary and his team want the game system framework to do, so let’s take that information and figure out the features of the system.
+
+Bethany: And we need all sorts of different time periods. 
+
+Bethany said the game system should support different time periods. That’s a feature of the game syste
+
+But what is a feature, anyway?
+A feature is just a high-level description of something a system needs to do. You usually get features from talking to your customers (or listening in on their conversations, like we just did on the last few pages).
+
+A lot of times, you can take one feature, and come up with several different requirements that you can use to satisfy that feature. So figuring out a system’s features is a great way to start to get a handle on your requirements.
+
+Starting with the features of a system is really helpful in big projects-like Gary’s game system-when you don’t have tons of details, and just need to get a handle on where to start.
+
+![](2022-02-05-13-35-35.png)
+
+![](2022-02-05-13-40-35.png)
+
+Use cases don’t always help you see the big picture.
+When you start to write use cases, you’re really getting into a lot of detail about what the system should do. The problem
+is that can cause you to lose sight of the big picture. In Gary’s game system, we’re really not ready for a lot of detail... we’re just trying to figure out what the framework  actually is at this point.
+
+So even though you could start writing use cases, that probably won’t help you figure  out exactly what you’re trying to build, from the big-picture point of view. When you’re working on a system, it’s a good idea to defer details as long as you can... you won’t get caught up in the little things when you should be working on the big things.
+
+You still need to know what your system is supposed to do... but you need a BIG-PICTURE view.
+
+Even though use cases might be a little too focused on the details for where we are in designing the system right now, you still need to have a good understanding of what your system needs to do. So you need a way to focus on the big picture, and figure  out what your system should do, while still avoiding getting into too much detail.
+
+
+### Use case diagrams
+
+
+Use case diagrams are the blueprints for your system.
+
+![](2022-02-05-13-50-46.png)
+
+![](2022-02-05-14-02-09.png)
+
+![](2022-02-05-14-08-41.png)
+
+### Actors are people, too (well, not always)
+
+![](2022-02-05-14-13-57.png)
+
+![](2022-02-05-14-14-23.png)
+
+Domain analysis lets you check your designs, and still speak the customer’s language
+
+Jim: Sure... but when do we get to talk about what classes we need to write, and the packages we put those classes into?
+
+Frank:  We’re getting to that, definitely. But the customer really  doesn’t understand what most of that stuff means... we’d never be sure we were building the right thing if we started talking about classes and variables.
+
+Jim: What about class diagrams? We could use those to show what we’re going to code, couldn’t we?
+
+Frank: Well, we could... but do you think the customer would understand that much better? That’s really what domain analysis is all about. We can talk to the customer about their system, in terms that they understand. For Gary, that means talking about units, and terrain, and tiles, instead of classes, objects, and methods.
+
+
+### Let’s do a little domain analysis!
+
+domain analysis. The process of identifying, collecting, organizing, and representing the relevant information of a domain, based upon the study of existing systems and their development histories, knowledge captured from domain experts, underlying theory, and emerging technology within a domain.
+
+![](2022-02-05-14-19-37.png)
+
+### What most people give the customer...
+ 
+![](2022-02-05-14-23-32.png)
+
+![](2022-02-05-14-29-39.png)
+
+![](2022-02-05-14-30-12.png)
+
+![](2022-02-05-14-37-35.png)
+
+
+### big apps process
+
+big apps -> gather features(general) and their requierements(more specific) (make feature list) -> defer details as long as you can. -> make use case diagrams (make use case diagram) -> domain analysis -> breaking system into modules -> apply design pattern(last step)
+
+![](2022-02-05-14-42-11.png)
+
+
+![](2022-02-05-14-47-32.png)
+
+
+## 7 - architecture 
