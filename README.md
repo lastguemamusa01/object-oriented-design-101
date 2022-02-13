@@ -1329,3 +1329,177 @@ big apps -> gather features(general) and their requierements(more specific) (mak
 
 
 ## 7 - architecture 
+
+Bringing Order to Chaos
+
+You have to start somewhere, but you better pick the right somewhere! You know how to break your application up into lots of small problems, but all that means is that you have LOTS of small problems. In this chapter, we’re going to help you figure out where to start, and make sure that you don’t waste any time working on the wrong things. It’s time to take all those little pieces laying around your workspace, and figure out how to turn them into a well-ordered, well-designed application. Along the way, you’ll learn about the all-important 3 Qs of architecture, and how Risk is a lot more than just a cool war game from the ‘80s.
+
+### Feeling a little overwhelmed?
+
+![](2022-02-12-19-54-20.png)
+
+![](2022-02-12-20-00-06.png)
+
+![](2022-02-12-20-34-01.png)
+
+![](2022-02-12-20-34-14.png)
+
+![](2022-02-12-20-34-26.png)
+
+![](2022-02-12-20-34-35.png)
+
+![](2022-02-12-20-35-05.png)
+
+![](2022-02-12-20-36-35.png)
+
+![](2022-02-12-20-36-46.png)
+
+![](2022-02-12-20-36-56.png)
+
+implement Board.class
+
+Doesn't using an array of arrays limit you to a square board ?
+
+* No, although it does limit you to a board that uses (x, y) coordinates. For example, you can use (x, y) coordinates in a board made up of hexagon-shaped tiles, if you structure the hexagon tiles correctly. But for the most part, an array of arrays is more ideally suited to a square-tiled, rectangular board.
+
+So isn’t that limiting? Why not use a graph, or even a Coordinate class, so you’re not tied to (x, y) coordinates and a rectangular board ?
+
+* If you wanted maximum flexibility, that might be a good idea. For this situation, though, our requirements (back on page 340) actually specified (x, y) coordinates. So we chose a solution that wasn’t quite as flexible, but certainly was simpler. Remember, at this stage, we’re trying to reduce risk, not increase it by going with a solution that is a lot more complex than we really need.
+
+The Tile and Unit classes
+To actually make Board compile and work, we need to create a Tile and Unit class. 
+
+Keep the right focus
+
+You don’t need to worry about everything that Tile and Unit will eventually need to do. Your focus is on making Board and its key features work, not on completing Tile or Unit. That’s why we left Unit so bare, and added only a few methods to Tile.
+
+![](2022-02-12-21-57-02.png)
+
+![](2022-02-12-21-57-14.png)
+
+![](2022-02-12-21-57-24.png)
+
+![](2022-02-12-21-57-47.png)
+
+![](2022-02-12-21-57-57.png)
+
+![](2022-02-12-21-58-07.png)
+
+![](2022-02-12-21-58-16.png)
+
+![](2022-02-12-21-58-24.png)
+
+![](2022-02-12-21-58-33.png)
+
+![](2022-02-12-21-58-42.png)
+
+![](2022-02-12-21-58-51.png)
+
+### Bullet points
+
+* Architecture helps you turn all your diagrams, plans, and feature lists into a well-ordered application.
+* The features in your system that are most important to the project are architecturally significant.
+* Focus on features that are the essence of your system, that you’re unsure about the meaning of, or unclear about how to implement first.
+* Everything you do in the architectural stages of a project should reduce the risks of your project failing.
+* If you don't need all the detail of a use case, writing a scenario detailing how your software could be used can help you gather requirements quickly.
+* When you're not sure what a feature is, you should ask the customer, and then try and generalize the answers you get into a good understanding of the feature.
+* Use commonality analysis to build software solutions that are flexible.
+* Customers are a lot more interested in software that does what they want, and comes in on time, than they are in code that you think is really cool.
+
+## 8 design principles
+
+Imitation is the sincerest form of not being stupid. There’s nothing as satisfying as coming up with a completely new and original solution to a problem that’s been troubling you for days—until you find out someone else solved the same problem, long before you did, and did an even better job than you did! In this chapter, we’re going to look at some design principles that people have come up with over the years, and how they can make you a better programmer. Lay aside your thoughts of “doing it your way”; this chapter is about doing it the smarter, faster way.
+
+### Design principle roundup
+
+### (O of SOLID) The Open Close Principle
+
+![](2022-02-12-23-09-49.png)
+
+![](2022-02-12-23-10-03.png)
+
+![](2022-02-12-23-10-11.png)
+
+What’s the big deal about modifying code in a base class, or a class that you’ve already written?
+
+* Once you have a class that works, and is being used, you really don’t want to make changes to it unless you have to. But remember, CHANGE is the great constant in software development. With the OCP, we allow for change through extension, rather than having to go back and modify your existing code. Subclasses can add and extend the base class’s behavior, without messing around with code that you already know is working and making the customer happy.
+
+Isn’t the OCP just another form of encapsulation?
+
+* It’s really a combination of encapsulation and abstraction. You’re finding the behavior that stays the same, and abstracting that behavior away into a base class, and then locking that code up from modification. But then when you need new or different behavior, your subclasses handle the changes by extending the base class. That’s where encapsulation comes in: you’re encapsulating what varies (behavior in the subclasses) away from what stays the same (the common behavior in the base class).
+
+So the only way to use the OCP is by extending another class?
+
+* No, anytime your code is closed for modification but open for extension, you’re using the OCP. So for example, if you had several private methods in a class, those are closed for modification—no other code can mess with them. But then you could add several public methods that invoked those private methods in different ways. You’re extending the behavior of the private methods, without changing them. That’s another example of the OCP in action.
+
+
+### The Don’t Repeat Yourself Principle (DRY)
+
+![](2022-02-12-23-27-48.png)
+
+![](2022-02-12-23-27-57.png)
+
+![](2022-02-12-23-28-06.png)
+
+
+### (S of SOLID) The Single Responsibility Principle
+
+![](2022-02-12-23-47-04.png)
+
+![](2022-02-12-23-47-19.png)
+
+![](2022-02-12-23-47-32.png)
+
+![](2022-02-12-23-47-49.png)
+
+### (L of SOLID) The Liskov Substitution Principle (LSP)
+
+* Inheritance
+* Delegation
+* Composition
+* Aggregation
+
+![](2022-02-13-00-24-48.png)
+
+![](2022-02-13-00-25-00.png)
+
+![](2022-02-13-00-25-11.png)
+
+![](2022-02-13-00-25-22.png)
+
+![](2022-02-13-00-25-36.png)
+
+![](2022-02-13-00-25-54.png)
+
+![](2022-02-13-00-26-08.png)
+
+
+### Aggregation versus composition
+
+It’s easy to get confused about when you should use composition, and when you should use aggregation. The easiest way to figure this out is to ask yourself, Does the object whose behavior I want to use exist outside of the object that uses its behavior?
+
+If the object does make sense existing on its own, then you should use aggregation; if not, then go with composition. But be careful! Sometimes the slightest change in the usage of your objects can make all the difference.
+
+
+![](2022-02-13-00-37-19.png)
+
+![](2022-02-13-00-42-27.png)
+
+![](2022-02-13-00-42-39.png)
+
+### BULLET POINTS
+
+* The Open-Closed Principle keeps your software reusable, but still flexible, by keeping classes open for extension, but closed for modification.
+* With classes doing one single thing through the Single Responsibility Principle, it’s even easier to apply the OCP to your code.
+* When you’re trying to determine if a method is
+the responsibility of a class, ask yourself, Is it this class’s job to do this particular thing? If not, move the method to another class.
+* Once you have your OO code nearly complete, be sure that you Don’t Repeat Yourself. You’ll avoid duplicate code, and ensure that each behavior in your code is in a single place.
+* DRY applies to requirements as well as your code: you should have each feature and requirement in your software implemented in a single place.
+* The Liskov Substitution Principle ensures that you use inheritance correctly, by requiring that subtypes be substitutable for their base types.
+* When you find code that violates the LSP, consider using delegation, composition, or aggregation to use behavior from other classes without resorting to inheritance.
+* If you need behavior from another class but don’t need to change or modify that behavior, you can simply delegate to that class to use the desired behavior.
+* Composition lets you choose a behavior from a family of behaviors, often via several implementations of an interface.
+* When you use composition, the composing object owns the behaviors it uses, and they stop existing as soon as the composing object does.
+* Aggregation allows you to use behaviors from another class without limiting the lifetime to those behaviors.
+* Aggregated behaviors continue to exist even after the aggregating object is destroyed.
+
