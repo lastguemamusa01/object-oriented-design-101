@@ -1503,3 +1503,107 @@ the responsibility of a class, ask yourself, Is it this class’s job to do this
 * Aggregation allows you to use behaviors from another class without limiting the lifetime to those behaviors.
 * Aggregated behaviors continue to exist even after the aggregating object is destroyed.
 
+## 9 iterating and testing
+
+It’s time to show the customer how much you really care. Nagging bosses? Worried clients? Stakeholders that keep asking, “Will it be done on time?” No amount of well-designed code will please your customers; you’ve got to show them something working. And now that you’ve got a solid OO programming toolkit, it’s time to learn how you can prove to the customer that your software works. In this chapter, we learn about two ways to dive deeper into your software’s functionality, and give the customer that warm feeling in their chest that makes them say, Yes, you’re definitely the right developer for this job!
+
+### Your toolbox is filling up
+
+![](2022-02-13-16-10-45.png)
+
+![](2022-02-13-16-10-53.png)
+
+![](2022-02-13-16-11-03.png)
+
+![](2022-02-13-16-11-12.png)
+
+![](2022-02-13-16-11-21.png)
+
+![](2022-02-13-16-11-33.png)
+
+![](2022-02-13-16-11-46.png)
+
+![](2022-02-13-16-11-56.png)
+
+![](2022-02-13-16-12-08.png)
+
+![](2022-02-13-16-12-16.png)
+
+![](2022-02-13-16-12-27.png)
+
+![](2022-02-13-16-12-36.png)
+
+![](2022-02-13-16-12-46.png)
+
+![](2022-02-13-16-12-56.png)
+
+
+### Let's write the Unit Class
+
+Create Unit.java and Weapon.java
+
+### Test Cases Dissected...
+
+![](2022-02-13-17-24-34.png)
+
+![](2022-02-13-17-24-45.png)
+
+create UnitTester.java
+
+![](2022-02-13-17-37-35.png)
+
+![](2022-02-13-18-06-41.png)
+
+![](2022-02-13-18-06-50.png)
+
+![](2022-02-13-18-06-59.png)
+
+![](2022-02-13-18-07-08.png)
+
+
+Change the Unit.java and UnitTester.java to throw exception instead return null
+
+![](2022-02-13-18-21-51.png)
+
+![](2022-02-13-18-26-20.png)
+
+
+The problem:
+Gary’s framework needs to support groups of units.
+
+Your task:
+1. Create a new class that can group units together, and both add and remove units to the group.
+
+2. Fill out the table below with test case scenarios that will test your software, and prove to Gary that the grouping of units works.
+
+3. Add methods to UnitTester to implement the test scenarios in the table, and make sure all your tests pass.
+
+### Bullet points
+
+* The first step in writing good software is to make sure your application works like the customer expects and wants it to.
+* Customers don’t usually care about diagrams and lists; they want to see your software actually do something.
+* Use case driven development focuses on one scenario in a use case in your application at a time.
+* In use case driven development, you focus on a single scenario at a time, but you also usually code all the scenarios in a single use case before moving on to any other scenarios, in other use cases.
+* Feature driven development allows you to code a complete feature before moving on to anything else.
+* You can choose to work on either big or small features in feature-driven development, as long as you take each feature one at a time.
+* Software development is always iterative. You look at the big picture, and then iterate down to smaller pieces of functionality.
+* You have to do analysis and design at each step of your development cycle, including when you start working on a new feature or use case.
+* Tests allow you to make sure your software doesn’t have any bugs, and let you prove to your customer that your software works.
+* A good test case only tests one specific piece of functionality.
+* Test cases may involve only one, or several, methods in a single class, or may involve multiple classes.
+* Test driven development is based on the idea that you write your tests first, and then develop software that passes those tests. The result is fully functional, working software.
+* Programming by contract assumes both sides in a transaction understand what actions generate what behavior, and will abide by that contract.
+* Methods usually return null or unchecked exceptions when errors occur in programming by contract environments.
+* Defensive programming looks for things to go wrong, and tests extensively to avoid problem situations.
+* Methods usually return “empty” objects or throw checked exceptions in defensive programming environments.
+
+
+Create UnitGroup.java
+
+![](2022-02-13-18-36-31.png)
+
+![](2022-02-13-18-36-40.png)
+
+
+## 10 the ooa&d lifecycle
+
