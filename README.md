@@ -1607,3 +1607,64 @@ Create UnitGroup.java
 
 ## 10 the ooa&d lifecycle
 
+Are we there yet? We’ve been working on lots of individual ways to improve your software, but now it’s time to put it all together. This is it, what you’ve been waiting for: we’re going to take everything you’ve been learning, and show you how it’s all really part of a single process that you can use over and over again to write great software.
+
+### Developing software, OOA&D style
+
+![](2022-02-16-21-56-12.png)
+
+![](2022-02-16-21-56-37.png)
+
+![](2022-02-16-21-56-44.png)
+
+![](2022-02-16-21-56-54.png)
+
+![](2022-02-16-21-57-12.png)
+
+![](2022-02-16-21-57-21.png)
+
+![](2022-02-16-21-57-31.png)
+
+![](2022-02-16-21-57-38.png)
+
+![](2022-02-16-21-57-45.png)
+
+![](2022-02-16-21-58-00.png)
+
+![](2022-02-16-21-58-08.png)
+
+![](2022-02-16-21-58-16.png)
+
+![](2022-02-16-21-58-27.png)
+
+![](2022-02-16-21-58-38.png)
+
+
+### Code the station class
+
+We’ve got requirements in the form of a use case, a class diagram, and we know the Station class will fit into our Subway model. Now we’re ready to start writing code:
+
+create Station.java
+
+The Java specification recommends that if two objects are equal, they should have the same hash code. So if you’re deciding on equality based on a property, it’s a good idea to also override hashCode() and return a hash code based on that same property. This is particularly important if you’re using your object in a Hashtable or HashMap, which both make heavy use of the hashCode() method.
+
+create Connection.java
+
+create Subway.java
+
+![](2022-02-16-22-46-48.png)
+
+![](2022-02-16-22-47-00.png)
+
+The SubwayLoader class
+
+We’re almost done with our first iteration, and our first use case. All that’s left is to code the class that loads a subway based on the test file we got from Objectville Travel, Inc.
+
+create SubwayLoader.java
+
+![](2022-02-16-23-29-45.png)
+
+![](2022-02-16-23-29-58.png)
+
+![](2022-02-16-23-31-32.png)
+
