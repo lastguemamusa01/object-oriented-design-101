@@ -1,6 +1,8 @@
-package chapter10.Loader;
+package chapter10.Test;
 
 import java.io.*;
+
+import chapter10.Loader.SubwayLoader;
 import chapter10.Subway.Subway;
 
 public class LoadTester {

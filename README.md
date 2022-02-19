@@ -1668,3 +1668,92 @@ create SubwayLoader.java
 
 ![](2022-02-16-23-31-32.png)
 
+
+### What’s left to do?
+
+![](2022-02-18-12-57-45.png)
+
+![](2022-02-18-12-58-00.png)
+
+![](2022-02-19-00-42-54.png)
+
+![](2022-02-19-00-43-10.png)
+
+![](2022-02-19-00-47-20.png)
+
+Update subway.java code
+
+![](2022-02-19-01-25-50.png)
+
+![](2022-02-19-01-29-42.png)
+
+Implement SubwayPrinter.java and SubwayTester.java
+
+
+### OOAD TimeLine
+
+Feature List
+
+* Talk to the customer
+* Key Feature List
+
+Use case Diagrams
+
+* EXTERNAL INITIATOR
+
+Break Up The problem
+
+* Architecture
+* Analysis
+* Commonality
+* Delegation
+* Variability
+
+Requirements
+
+* External Initiator
+* Scenario
+* Alternate Path
+* Iteration
+* Rquirements Lists
+
+Domain Analysis
+
+* Key Feture List
+* Talk to the customer
+* Textual Analysis
+* Architecture
+
+Preliminary Design
+
+* Encapsulation
+* Design Pattern
+* Class Diagram
+* Design Principles
+* Cohesion
+
+Implementation
+
+* OO Principles
+* Encapsulation
+* Design Pattern
+* Feature Driven Development
+* Test Driven Development
+* Test Scenario
+* Design Principles
+
+![](2022-02-19-02-30-40.png)
+
+### The journey’s not over...
+
+Now take OOA&D for a spin on your own projects!
+
+We’ve loved having you here in Objectville, and we’re sad to see you go. But there’s nothing like taking what you’ve learned and putting it to use on your own development projects. So don’t stop enjoying OOA&D just yet... you’ve still got a few more gems in the back of the book, an index to read through, and then it’s time to take all these new ideas and put them into practice. 
+
+## appendix i: leftovers
+
+
+The Top Ten Topics (we didn’t cover)
+
+#1. IS-A and HAS-A
+
