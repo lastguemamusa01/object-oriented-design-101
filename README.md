@@ -1757,3 +1757,50 @@ The Top Ten Topics (we didn’t cover)
 
 #1. IS-A and HAS-A
 
+![](2022-02-19-03-13-38.png)
+
+![](2022-02-19-03-13-48.png)
+
+![](2022-02-19-03-13-56.png)
+
+![](2022-02-19-03-14-15.png)
+
+![](2022-02-19-03-14-25.png)
+
+![](2022-02-19-03-14-36.png)
+
+![](2022-02-19-03-14-44.png)
+
+![](2022-02-19-03-14-53.png)
+
+![](2022-02-19-03-15-03.png)
+
+## Appendix ii: welcome to objectville
+
+Get ready to take a trip to a foreign country. It’s time to visit Objectville, a land where objects do just what they’re supposed
+to, applications are all well-encapsulated (you’ll find out exactly what that means shortly), and designs are easy to reuse and extend. But before we can get going, there are a couple of things you need to know first, and a few language skills you’re going to have to learn. Don’t worry, though, it won’t take long, and before you know it, you’ll be speaking the language of OO like you’ve been living in the well-designed areas of Objectville for years.
+
+![](2022-02-19-03-37-43.png)
+
+![](2022-02-19-03-37-50.png)
+
+![](2022-02-19-03-37-59.png)
+
+![](2022-02-19-03-38-07.png)
+
+![](2022-02-19-03-38-17.png)
+
+### Bullet Points
+
+* UML stands for the Unified Modeling Language.
+* UML helps you communicate the structure of your application to other developers, customers, and managers.
+* A class diagram gives you an overview of your class, including its methods and variables.
+* Inheritance is when one class extends another class to reuse or build upon the inherited class’s behavior.
+* In inheritance, the class being inherited from is called the superclass; the class that is doing the inheritance is called the subclass.
+* A subclass gets all the behavior of its superclass automatically.
+* A subclass can override its superclass’s behavior to change how a method works.
+* Polymorphism is when a subclass “stands in" for its superclass.
+* Polymorphism allows your applications to be more flexible, and less resistant to change.
+* Encapsulation is when you separate or hide one part of your code from the rest of your code.
+* The simplest form of encapsulation is when you make the variables of your classes private, and only expose that data through methods on the class.
+* You can also encapsulate groups of data, or even behavior, to control how they are accessed.
